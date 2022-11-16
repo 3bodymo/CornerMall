@@ -1,13 +1,18 @@
 /* eslint-disable no-unused-vars */
 import Head from "next/head"
 import Link from "next/link"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Store } from "../utils/Store"
 import Footer from "./Footer"
+import Image from "next/image"
 
 export default function Layout(props) {
-  const { state, dispatch } = useContext(Store)
+  const { state } = useContext(Store)
   const { cart } = state
+  const [cartItemsCount, setCartItemsCount] = useState(0)
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
+  }, [cart.cartItems])
   return (
     <>
       <Head>
@@ -21,7 +26,13 @@ export default function Layout(props) {
             <div className="flex items-center">
               <div className="">
                 <Link href="/">
-                  <img src="/favicon.ico" className="pr-4" />
+                  <Image
+                    src="/favicon.ico"
+                    width={70}
+                    height={70}
+                    alt="CornerMall"
+                    className="pr-4"
+                  />
                 </Link>
               </div>
               <div>
@@ -34,14 +45,6 @@ export default function Layout(props) {
               </div>
             </div>
             <div>
-              {/* <Link href="/cart" className="p-2 text-lg">
-                Cart
-                {cart.cartItems.length > 0 && (
-                  <span className="ml-1 rounded-full bg-blue-500 px-2 py-1 text-xs font-bold text-white">
-                    {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                  </span>
-                )}
-              </Link> */}
               <Link href="/cart" className="p-4">
                 <div className="font-sans inline-block lg:inline-block lg:mt-0 lg:ml-6 align-middle text-black hover:text-gray-700">
                   <div role="button" className="relative flex">
@@ -59,9 +62,8 @@ export default function Layout(props) {
                         d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                       />
                     </svg>
-
                     <span className="absolute left-4 bottom-4 rounded-full bg-blue-600 w-4 h-4 text-white text-xs leading-tight text-center">
-                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                      {cartItemsCount}
                     </span>
                   </div>
                 </div>

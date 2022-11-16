@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export default function Footer() {
@@ -7,7 +8,12 @@ export default function Footer() {
         <div className="flex flex-row pr-3 space-x-4 sm:space-x-8">
           <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full dark:bg-violet-400">
             <Link href="/">
-              <img src="/favicon.ico" />
+              <Image
+                src="/favicon.ico"
+                alt="CornerMall"
+                width={70}
+                height={70}
+              />
             </Link>
           </div>
           <ul className="flex flex-wrap items-center space-x-4 sm:space-x-8">

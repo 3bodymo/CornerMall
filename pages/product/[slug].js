@@ -20,6 +20,7 @@ export default function ProductScreen() {
   function addToCartHandler() {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
     const quantity = existItem ? existItem.quantity + 1 : 1
+
     if (product.countInStock < quantity) {
       alert("Sorry, the product is out of stock!")
       return

@@ -65,7 +65,7 @@ export default function HomePage() {
 
               <div className="pt-6 flex w-full justify-center md:justify-start pb-0 lg:pb-0 fade-in">
                 <Link href="/product">
-                  <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                  <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                     <span className="relative px-10 py-3 text-lg font-bold transition-all ease-in duration-75 from-cyan-500 to-blue-500 rounded-md group-hover:bg-opacity-0">
                       Shop Now
                     </span>
@@ -78,6 +78,7 @@ export default function HomePage() {
               <Image
                 width={640}
                 height={640}
+                alt="shop-icon"
                 className="w-5/6 mx-auto lg:mr-0 slide-in-bottom"
                 src="/undraw_web_shopping_re_owap.svg"
               />
