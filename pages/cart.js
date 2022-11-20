@@ -5,8 +5,11 @@ import { XCircleIcon } from "@heroicons/react/outline"
 import Layout from "../components/Layout"
 import { Store } from "../utils/Store"
 import dynamic from "next/dynamic"
+import { useSession } from "next-auth/react"
+import { toast } from "react-toastify"
 
 function CartScreen() {
+  const { data: session } = useSession()
   const { state, dispatch } = useContext(Store)
   const {
     cart: { cartItems },
@@ -14,6 +17,7 @@ function CartScreen() {
 
   function removeItemHandler(item) {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item })
+    toast.success("Removed from cart successfully")
   }
 
   function updateCartHandler(item, qty) {
@@ -113,7 +117,11 @@ function CartScreen() {
                     </div>
                   </div>
 
-                  <Link href="/login?redirect=/shipping">
+                  <Link
+                    href={
+                      session?.user ? "/shipping" : "/login?redirect=/shipping"
+                    }
+                  >
                     <button className="w-full relative inline-flex items-center justify-center p-0.5 mt-3 mr-2 overflow-hidden text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                       <span className="font-mono relative px-6 py-2 text-xl font-bold transition-all ease-in duration-75 from-cyan-500 to-blue-500 rounded-md group-hover:bg-opacity-0">
                         Check out

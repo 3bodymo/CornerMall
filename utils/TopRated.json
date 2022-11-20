@@ -1,0 +1,44 @@
+{
+  "resources": [
+    {
+      "title": "Asus GX550L",
+      "link": "/product/asus-gx550l",
+      "imageUrl": "/images/laptops/asus-gx550l.jpg"
+    },
+    {
+      "title": "Acer Predator Helios 300",
+      "link": "/product/acer-predator-helios-300",
+      "imageUrl": "/images/laptops/acer-predator-helios-300.jpg"
+    },
+    {
+      "title": "Huawei P30 Pro",
+      "link": "/product/huawei-p30-pro",
+      "imageUrl": "/images/mobiles/huawei-p30-pro.jpg"
+    },
+    {
+      "title": "iPhone 13 Pro Max",
+      "link": "/product/iphone-13-pro-max",
+      "imageUrl": "/images/mobiles/iphone-13-pro-max.jpg"
+    },
+    {
+      "title": "iPhone 12",
+      "link": "/product/iphone-12",
+      "imageUrl": "/images/mobiles/iphone-12.jpg"
+    },
+    {
+      "title": "Samsung Galaxy S22 Ultra",
+      "link": "/product/samsung-s22-ultra",
+      "imageUrl": "/images/mobiles/samsung-s22-ultra.jpg"
+    },
+    {
+      "title": "Apple MacBook Pro 2021",
+      "link": "/product/apple-macBook-pro-2021",
+      "imageUrl": "/images/laptops/apple-macBook-pro-2021.jpg"
+    },
+    {
+      "title": "HUAWEI MateBook 14 2021",
+      "link": "/product/huawei-mateBook-14-2021",
+      "imageUrl": "/images/laptops/huawei-mateBook-14-2021.jpg"
+    }
+  ]
+}
