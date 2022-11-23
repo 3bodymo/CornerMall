@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Layout from "../../components/Layout"
 import ProductItem from "../../components/ProductItem"
-import SliderComponent from "../../components/SliderComponent"
 import Carousel from "../../components/Carousel"
 import db from "../../utils/db"
 import Product from "../../models/Products"
