@@ -41,8 +41,8 @@ export default function Layout(props) {
         <header>
           <nav className="flex h-20 items-center px-4 py-8 justify-between shadow-md">
             <div className="flex items-center">
-              <div className="">
-                <Link href="/">
+              <div>
+                <Link href="/product">
                   <Image
                     src="/favicon.ico"
                     width={70}
@@ -54,7 +54,7 @@ export default function Layout(props) {
               </div>
               <div>
                 <Link
-                  href="/"
+                  href="/product"
                   className="text-xl font-bold text-blue-700 hover:text-blue-500"
                 >
                   CornerMall

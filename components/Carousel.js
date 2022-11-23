@@ -53,13 +53,13 @@ const Carousel = () => {
   return (
     <div className="carousel my-6 mx-auto">
       <h2 className="text-4xl text-center leading-8 font-semibold mb-12 text-black font-mono">
-        <Link href="/product">Top rated &#11088;</Link>
+        Top rated &#11088;
       </h2>
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
           <button
             onClick={movePrev}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+            className="hover:bg-cyan-700/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("prev")}
           >
             <svg
@@ -80,7 +80,7 @@ const Carousel = () => {
           </button>
           <button
             onClick={moveNext}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+            className="hover:bg-cyan-700/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("next")}
           >
             <svg
@@ -123,7 +123,7 @@ const Carousel = () => {
                 </a>
                 <a
                   href={resource.link}
-                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-800/75 z-10"
+                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-cyan-600/75 z-10"
                 >
                   <h3 className="text-white py-6 px-3 mx-auto text-xl">
                     {resource.title}

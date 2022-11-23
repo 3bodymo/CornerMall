@@ -7,6 +7,7 @@ import { Store } from "../utils/Store"
 import dynamic from "next/dynamic"
 import { useSession } from "next-auth/react"
 import { toast } from "react-toastify"
+import axios from "axios"
 
 function CartScreen() {
   const { data: session } = useSession()
@@ -17,21 +18,29 @@ function CartScreen() {
 
   function removeItemHandler(item) {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item })
-    toast.success("Removed from cart successfully")
+    toast.success("The item removed successfully")
   }
 
-  function updateCartHandler(item, qty) {
+  async function updateCartHandler(item, qty) {
     const quantity = Number(qty)
+
+    const { data } = await axios.get(`/api/products/${item._id}`)
+    if (data.countInStock < quantity) {
+      toast.error("Sorry, the product is out of stock!")
+      return
+    }
+
     dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } })
+    toast.success("Cart updated successfully")
   }
 
   return (
     <Layout title="Cart">
       {/* <h1 className="mb-4 text-xl font-bold">Shopping Cart</h1> */}
       {cartItems.length === 0 ? (
-        <div>
+        <div className="text-xl p-4 font-mono">
           Cart is empty. {""}
-          <Link className="font-medium" href="/product">
+          <Link className="font-bold" href="/product">
             Go for shopping?
           </Link>
         </div>
@@ -50,10 +59,10 @@ function CartScreen() {
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
-                    <th className="text-left">Item</th>
-                    <th className="p-5 text-right">Quantity</th>
-                    <th className="p-5 text-right">Price</th>
-                    <th className="p-5">Delete</th>
+                    <th className="px-2 text-left font-mono">Item</th>
+                    <th className="p-5 text-right font-mono">Quantity</th>
+                    <th className="p-5 text-right font-mono">Price</th>
+                    <th className="p-5 font-mono">Delete</th>
                   </tr>
                 </thead>
                 <tbody>

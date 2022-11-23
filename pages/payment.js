@@ -60,15 +60,15 @@ export default function PaymentScreen() {
             </label>
           </div>
         ))}
-        <div class="pt-4 inline-flex">
+        <div className="pt-4 inline-flex">
           <button
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l"
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l"
             onClick={() => router.push("/shipping")}
           >
             ❮ Prev
           </button>
           <button
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-r"
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-r"
             onClick={() => router.push("/placeorder")}
           >
             Next ❯
@@ -78,3 +78,5 @@ export default function PaymentScreen() {
     </Layout>
   )
 }
+
+PaymentScreen.auth = true

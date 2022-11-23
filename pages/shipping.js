@@ -55,6 +55,13 @@ export default function ShippingScreen() {
       })
     )
     router.push("/payment")
+    //TODO: fix the logic of this part
+    // console.log(document.referrer)
+    // if (document.referrer.includes("placeorder")) {
+    //   router.push("/placeorder")
+    // } else {
+    //   router.push("/payment")
+    // }
   }
   return (
     <Layout title="Shipping Address">
@@ -158,8 +165,8 @@ export default function ShippingScreen() {
           )}
         </div>
 
-        <button class="relative inline-flex items-center justify-center p-0.5 mb-8 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-          <span class="font-bold font-serif relative px-7 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+        <button className="relative inline-flex items-center justify-center p-0.5 mb-8 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+          <span className="font-bold font-serif relative px-7 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Submit
           </span>
         </button>

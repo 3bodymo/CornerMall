@@ -4,12 +4,14 @@ import Cookies from "js-cookie"
 
 export const Store = createContext()
 
+// TODO: Get the state from the database
 const initialState = {
   cart: Cookies.get("cart")
     ? JSON.parse(Cookies.get("cart"))
     : { cartItems: [], shippingAddress: {}, paymentMethod: "" },
 }
 
+// TODO: Also set different states to the database to retrieve states later if user logged out
 function reducer(state, action) {
   switch (action.type) {
     case "CART_ADD_ITEM": {
@@ -41,6 +43,12 @@ function reducer(state, action) {
           shippingAddress: { location: {} },
           paymentMethod: "",
         },
+      }
+    }
+    case "CART_CLEAR_ITEMS": {
+      return {
+        ...state,
+        cart: { ...state.cart, cartItems: [] },
       }
     }
     case "SAVE_SHIPPING_ADDRESS":
