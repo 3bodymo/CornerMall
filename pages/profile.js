@@ -54,7 +54,9 @@ export default function ProfileScreen() {
         </h1>
 
         <div className="mb-4">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className="font-mono">
+            Name
+          </label>
           <input
             type="text"
             className="w-full"
@@ -70,7 +72,9 @@ export default function ProfileScreen() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="font-mono">
+            Email
+          </label>
           <input
             type="email"
             className="w-full"
@@ -89,7 +93,9 @@ export default function ProfileScreen() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="font-mono">
+            Password
+          </label>
           <input
             className="w-full"
             type="password"
@@ -107,7 +113,9 @@ export default function ProfileScreen() {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="font-mono">
+            Confirm Password
+          </label>
           <input
             className="w-full"
             type="password"
