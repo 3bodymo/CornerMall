@@ -4,6 +4,7 @@ import React, { useContext } from "react"
 import { toast } from "react-toastify"
 import { Store } from "../utils/Store"
 import axios from "axios"
+import Image from "next/image"
 
 export default function ProductItem({ product }) {
   const { state, dispatch } = useContext(Store)
@@ -26,9 +27,11 @@ export default function ProductItem({ product }) {
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
-        <img
+        <Image
           src={product.image}
           alt={product.name}
+          width={400}
+          height={400}
           className="rounded shadow w-fit h-fit"
         />
       </Link>
