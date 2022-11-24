@@ -81,11 +81,14 @@ function CartScreen() {
                             height={50}
                           ></Image>{" "}
                           &nbsp;&nbsp;
-                          {item.name}
+                          <span className="text-xs md:text-base">
+                            {item.name}
+                          </span>
                         </Link>
                       </td>
-                      <td className="p-7 text-right">
+                      <td className="p-3 md:p-7 text-right">
                         <select
+                          className="px-0 md:px-2"
                           value={item.quantity}
                           onChange={(x) =>
                             updateCartHandler(item, x.target.value)
@@ -98,8 +101,8 @@ function CartScreen() {
                           ))}
                         </select>
                       </td>
-                      <td className="p-6 text-right">${item.price}</td>
-                      <td className="p-7 text-center">
+                      <td className="p-3 md:p-6 text-right">${item.price}</td>
+                      <td className="p-3 md:p-7 text-center">
                         <button onClick={() => removeItemHandler(item)}>
                           <XCircleIcon className="h-5 w-5"></XCircleIcon>
                         </button>
