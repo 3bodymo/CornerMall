@@ -33,7 +33,7 @@ export default function ProductItem({ product }) {
           width={400}
           height={400}
           layout="responsive"
-          className="card rounded shadow"
+          className="rounded shadow"
         />
       </Link>
       <div className="flex flex-col items-center justify-center p-5">
