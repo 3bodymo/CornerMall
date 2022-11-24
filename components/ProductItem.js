@@ -32,7 +32,8 @@ export default function ProductItem({ product }) {
           alt={product.name}
           width={400}
           height={400}
-          className="rounded shadow w-fit h-fit"
+          layout="responsive"
+          className="card rounded shadow"
         />
       </Link>
       <div className="flex flex-col items-center justify-center p-5">
