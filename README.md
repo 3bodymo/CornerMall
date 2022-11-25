@@ -1,6 +1,5 @@
 # NextJs Ecommerce Website
 ![](https://github.com/3bodymo/CornerMall/blob/main/demo.gif)
-
 I've used NextJs to implement this website, and used tailwind for CSS.
 For the database I used MongoDB.
 When I developed this website I was interesting for security part, so if you found any vulnerability feel free to contact me.
