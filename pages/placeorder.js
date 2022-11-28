@@ -146,7 +146,9 @@ export default function PlaceOrderScreen() {
                               height={50}
                             ></Image>{" "}
                             &nbsp;
-                            {item.name}
+                            <span className="text-sm md:text-base">
+                              {item.name}
+                            </span>
                           </Link>
                         </td>
                         <td className="p-5 text-right">{item.quantity}</td>
