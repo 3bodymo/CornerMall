@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         .send({ message: "Error: The order is already paid!" })
     }
     order.isPaid = true
-    order.paidA = Date.now()
+    order.paidAt = Date.now()
     order.paymentResult = {
       id: req.body.status,
       status: req.body.status,
