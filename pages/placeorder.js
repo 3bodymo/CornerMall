@@ -1,41 +1,41 @@
-import React, { useContext, useEffect, useState } from "react"
-import Layout from "../components/Layout"
-import CheckoutWizard from "../components/CheckoutWizard"
-import Link from "next/link"
-import { Store } from "../utils/Store"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import axios from "axios"
-import Cookies from "js-cookie"
-import { toast } from "react-toastify"
-import { getError } from "../utils/error"
+import React, { useContext, useEffect, useState } from "react";
+import Layout from "../components/Layout";
+import CheckoutWizard from "../components/CheckoutWizard";
+import Link from "next/link";
+import { Store } from "../utils/Store";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+import { getError } from "../utils/error";
 
 export default function PlaceOrderScreen() {
-  const { state, dispatch } = useContext(Store)
-  const { cart } = state
-  const { cartItems, shippingAddress, paymentMethod } = cart
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const { cartItems, shippingAddress, paymentMethod } = cart;
 
-  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
-  )
-  const shippingPrice = itemsPrice > 500 ? 0 : 20
-  const taxPrice = round2(itemsPrice * 0.14)
-  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice)
+  );
+  const shippingPrice = itemsPrice > 500 ? 0 : 20;
+  const taxPrice = round2(itemsPrice * 0.14);
+  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
 
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
     if (!paymentMethod) {
-      router.push("/payment")
+      router.push("/payment");
     }
-  }, [paymentMethod, router])
+  }, [paymentMethod, router]);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   async function placeOrderHandler() {
     try {
-      setLoading(true)
+      setLoading(true);
       const { data } = await axios.post("/api/orders", {
         orderItems: cartItems,
         shippingAddress,
@@ -44,20 +44,20 @@ export default function PlaceOrderScreen() {
         shippingPrice,
         taxPrice,
         totalPrice,
-      })
-      setLoading(false)
-      dispatch({ type: "CART_CLEAR_ITEMS" })
+      });
+      setLoading(false);
+      dispatch({ type: "CART_CLEAR_ITEMS" });
       Cookies.set(
         "cart",
         JSON.stringify({
           ...cart,
           cartItems: [],
         })
-      )
-      router.push(`/order/${data._id}`)
+      );
+      router.push(`/order/${data._id}`);
     } catch (err) {
-      setLoading(false)
-      toast.error(getError(err))
+      setLoading(false);
+      toast.error(getError(err));
     }
   }
 
@@ -217,7 +217,7 @@ export default function PlaceOrderScreen() {
         </>
       )}
     </Layout>
-  )
+  );
 }
 
-PlaceOrderScreen.auth = true
+PlaceOrderScreen.auth = true;

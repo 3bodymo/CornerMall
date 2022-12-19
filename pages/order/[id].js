@@ -1,76 +1,76 @@
-import axios from "axios"
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
-import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { useEffect, useReducer } from "react"
-import Layout from "../../components/Layout"
-import { getError } from "../../utils/error"
-import { toast } from "react-toastify"
+import axios from "axios";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useReducer } from "react";
+import Layout from "../../components/Layout";
+import { getError } from "../../utils/error";
+import { toast } from "react-toastify";
 
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
-      return { ...state, loading: true, error: "" }
+      return { ...state, loading: true, error: "" };
     case "FETCH_SUCCESS":
-      return { ...state, loading: false, order: action.payload, error: "" }
+      return { ...state, loading: false, order: action.payload, error: "" };
     case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload }
+      return { ...state, loading: false, error: action.payload };
     case "PAY_REQUEST":
-      return { ...state, loadingPay: true }
+      return { ...state, loadingPay: true };
     case "PAY_SUCCESS":
-      return { ...state, loadingPay: false, successPay: true }
+      return { ...state, loadingPay: false, successPay: true };
     case "PAY_FAIL":
-      return { ...state, loadingPay: false, errorPay: action.payload }
+      return { ...state, loadingPay: false, errorPay: action.payload };
     case "PAY_RESET":
-      return { ...state, loadingPay: false, successPay: false, errorPay: "" }
+      return { ...state, loadingPay: false, successPay: false, errorPay: "" };
 
     default:
-      state
+      state;
   }
 }
 export default function OrderScreen() {
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-  const { query } = useRouter()
-  const orderId = query.id
+  const { query } = useRouter();
+  const orderId = query.id;
 
   const [{ loading, error, order, successPay, loadingPay }, dispatch] =
     useReducer(reducer, {
       loading: true,
       order: {},
       error: "",
-    })
+    });
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        dispatch({ type: "FETCH_REQUEST" })
-        const { data } = await axios.get(`/api/orders/${orderId}`)
-        dispatch({ type: "FETCH_SUCCESS", payload: data })
+        dispatch({ type: "FETCH_REQUEST" });
+        const { data } = await axios.get(`/api/orders/${orderId}`);
+        dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err) })
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
-    }
+    };
     if (!order._id || successPay || (order._id && order._id !== orderId)) {
-      fetchOrder()
+      fetchOrder();
       if (successPay) {
-        dispatch({ type: "PAY_RESET" })
+        dispatch({ type: "PAY_RESET" });
       }
     } else {
       const loadPaypalScript = async () => {
-        const { data: clientId } = await axios.get("/api/keys/paypal")
+        const { data: clientId } = await axios.get("/api/keys/paypal");
         paypalDispatch({
           type: "resetOptions",
           value: {
             "client-id": clientId,
             currency: "USD",
           },
-        })
-        paypalDispatch({ type: "setLoadingStatus", value: "pending" })
-      }
-      loadPaypalScript()
+        });
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      };
+      loadPaypalScript();
     }
-  }, [order, orderId, paypalDispatch, successPay])
+  }, [order, orderId, paypalDispatch, successPay]);
 
   const {
     shippingAddress,
@@ -84,7 +84,7 @@ export default function OrderScreen() {
     paidAt,
     isDelivered,
     deliveredAt,
-  } = order
+  } = order;
 
   function createOrder(data, actions) {
     return actions.order
@@ -96,27 +96,27 @@ export default function OrderScreen() {
         ],
       })
       .then((orderID) => {
-        return orderID
-      })
+        return orderID;
+      });
   }
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
-        dispatch({ type: "PAY_REQUEST" })
+        dispatch({ type: "PAY_REQUEST" });
         const { data } = await axios.put(
           `/api/orders/${order._id}/pay`,
           details
-        )
-        dispatch({ type: "PAY_SUCCESS", payload: data })
-        toast.success("Paid successfully")
+        );
+        dispatch({ type: "PAY_SUCCESS", payload: data });
+        toast.success("Order is paid successfully");
       } catch (err) {
-        dispatch({ type: "PAY_FAIL", payload: getError(err) })
-        toast.error(getError(err))
+        dispatch({ type: "PAY_FAIL", payload: getError(err) });
+        toast.error(getError(err));
       }
-    })
+    });
   }
   function onError(err) {
-    toast.error(getError(err))
+    toast.error(getError(err));
   }
 
   return (
@@ -254,7 +254,7 @@ export default function OrderScreen() {
         </div>
       )}
     </Layout>
-  )
+  );
 }
 
-OrderScreen.auth = true
+OrderScreen.auth = true;
